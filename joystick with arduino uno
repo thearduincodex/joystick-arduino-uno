@@ -1,0 +1,29 @@
+// Define pins for joystick module
+const int VRxPin = A0; // X-axis
+const int VRyPin = A1; // Y-axis
+const int SWPin = 2;   // Button (digital pin)
+
+void setup() {
+  // Initialize serial communication
+  Serial.begin(9600);
+
+  // Set the SW pin as input with pull-up resistor
+  pinMode(SWPin, INPUT_PULLUP);
+}
+
+void loop() {
+  // Read joystick values
+  int xValue = analogRead(VRxPin); // Read X-axis value
+  int yValue = analogRead(VRyPin); // Read Y-axis value
+  int buttonState = digitalRead(SWPin); // Read button state
+
+  // Print values to the Serial Monitor
+  Serial.print("X: ");
+  Serial.print(xValue);
+  Serial.print(" | Y: ");
+  Serial.print(yValue);
+  Serial.print(" | Button: ");
+  Serial.println(buttonState == LOW ? "Pressed" : "Released");
+
+  delay(100); // Small delay for readability
+}
